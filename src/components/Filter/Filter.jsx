@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Filter.module.css';
 import PropTypes from 'prop-types';
 
-export const Filter = ({ nameFilter, handleUser }) => {
+export const Filter = ({ nameFilter, handleChangeFilter }) => {
   return (
     <label className={s.label}>
       Find contacts by name
@@ -10,7 +10,7 @@ export const Filter = ({ nameFilter, handleUser }) => {
         type="text"
         name="filter"
         value={nameFilter}
-        onChange={handleUser}
+        onChange={handleChangeFilter}
       />
     </label>
   );
@@ -18,5 +18,5 @@ export const Filter = ({ nameFilter, handleUser }) => {
 
 Filter.propTypes = {
   nameFilter: PropTypes.string.isRequired,
-  handleUser: PropTypes.func.isRequired,
+  handleChangeFilter: PropTypes.func.isRequired,
 };

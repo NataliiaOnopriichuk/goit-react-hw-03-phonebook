@@ -9,16 +9,16 @@ export class App extends Component {
     filter: '',
   };
 
-  addListUser = newUser => {
+  addContactToList = newUser => {
     this.setState(prev => ({ contacts: [...prev.contacts, newUser] }));
   };
 
-  handleUser = e => {
+  handleChangeFilter = e => {
     const { value } = e.target;
     this.setState({ filter: value });
   };
 
-  findUser = () => {
+  filterContactsByName = () => {
     const { contacts, filter } = this.state;
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(filter.toLowerCase().trim())
@@ -46,6 +46,7 @@ export class App extends Component {
   }
 
   render() {
+    const filteredContacts = this.filterContactsByName();
     return (
       <div
         style={{
@@ -59,15 +60,17 @@ export class App extends Component {
       >
         <h1>Phonebook</h1>
         <ContactForm
-          userContacts={this.addListUser}
+          onAddContact={this.addContactToList}
           contacts={this.state.contacts}
         />
 
         <h2>Contacts</h2>
-        <Filter nameFilter={this.state.filter} handleUser={this.handleUser} />
+        <Filter
+          nameFilter={this.state.filter}
+          handleChangeFilter={this.handleChangeFilter}
+        />
         <ContactList
-          contacts={this.state.contacts}
-          findUser={this.findUser}
+          contacts={filteredContacts}
           removeContact={this.removeContact}
         />
       </div>

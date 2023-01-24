@@ -32,7 +32,7 @@ export class ContactForm extends Component {
     )
       return alert(`${this.state.name} is already in contacts`);
 
-    this.props.userContacts({
+    this.props.onAddContact({
       name: this.state.name,
       phoneNumber: this.state.number,
       id: nanoid(),
@@ -75,7 +75,7 @@ export class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  userContacts: PropTypes.func.isRequired,
+  onAddContact: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,

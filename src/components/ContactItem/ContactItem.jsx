@@ -1,8 +1,8 @@
 import s from './ContactItem.module.css';
 import PropTypes from 'prop-types';
 
-export const ContactItem = ({ contacts, findUser, removeContact }) => {
-  return findUser().map(({ name, phoneNumber, id }) => (
+export const ContactItem = ({ contacts, removeContact }) => {
+  return contacts.map(({ name, phoneNumber, id }) => (
     <li key={id} className={s.listItem}>
       <p>
         {name}: {phoneNumber}
@@ -21,7 +21,6 @@ export const ContactItem = ({ contacts, findUser, removeContact }) => {
 };
 
 ContactItem.propTypes = {
-  findUser: PropTypes.func.isRequired,
   removeContact: PropTypes.func.isRequired,
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
